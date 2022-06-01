@@ -273,7 +273,8 @@ class BaseAlgo():
         print(' Accuracy: ', case, 100*test_acc/test_size )         
                 
         #self.privacy_engine.module.enable_hooks()
-        opacus.autograd_grad_sample.enable_hooks()        
+        if self.args.dp_noise:
+            opacus.autograd_grad_sample.enable_hooks()
         return 100*test_acc/test_size
     
     def get_dp_noise(self):

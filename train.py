@@ -26,6 +26,10 @@ import torch.utils.data as data_utils
 from utils.helper import *
 from utils.match_function import *
 
+#gpu
+os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
+os.environ["CUDA_VISIBLE_DEVICES"] = "2"
+
 # Input Parsing
 parser = argparse.ArgumentParser()
 parser.add_argument('--dataset_name', type=str, default='rot_mnist', 
@@ -201,6 +205,11 @@ if args.dataset_name == 'slab':
     
 if not os.path.exists(base_res_dir):
     os.makedirs(base_res_dir)    
+
+with open('configs/commandline_args.txt', 'w') as f:
+    json.dump(args.__dict__, f, indent=2)
+
+
 
 #Execute the method for multiple runs ( total args.n_runs )
 for run in range(args.n_runs):

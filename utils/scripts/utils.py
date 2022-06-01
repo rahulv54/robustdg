@@ -11,8 +11,8 @@ import torchvision
 from torch import optim, nn
 import torch.nn.functional as F
 from scipy.linalg import qr
-import utils.scripts.lms_utils as au
-import utils.scripts.ptb_utils as pu
+# import utils.scripts.lms_utils as au
+# import utils.scripts.ptb_utils as pu
 import utils.scripts.gpu_utils as gu
 from sklearn import metrics
 import collections
