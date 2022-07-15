@@ -28,7 +28,7 @@ from utils.match_function import *
 
 #gpu
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
-os.environ["CUDA_VISIBLE_DEVICES"] = "2"
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
 # Input Parsing
 parser = argparse.ArgumentParser()
