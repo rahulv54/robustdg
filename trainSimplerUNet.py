@@ -39,9 +39,13 @@ reload(simpleUNet)
 
 # In[4]:
 
-train_sets = glob.glob('data/syntheticSegmentation/simple_train_dom1_*')
-val_set_name = glob.glob('data/syntheticSegmentation/simple_balanced_*')[0]
+#simplicity bias with texture
+# train_sets = glob.glob('data/syntheticSegmentation/simple_train_dom1_*')
+# val_set_name = glob.glob('data/syntheticSegmentation/simple_balanced_*')[0]
 
+#simplicity bias with colours
+train_sets = glob.glob('data/syntheticSegmentation/color_train_dom1_*')
+val_set_name = glob.glob('data/syntheticSegmentation/color_balanced_*')[0]
 for train_set_name in train_sets[2:]:
 
     train_set = data_loading.SegmentationDataSet(train_set_name)
@@ -66,12 +70,12 @@ for train_set_name in train_sets[2:]:
 
 
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    model = simpleUNet.UNet(n_class=2)
+    model = simpleUNet.UNet(in_channels=3,n_class=2)
     model = model.to(device)
 
     # check keras-like model summary using torchsummary
     from torchsummary import summary
-    summary(model, input_size=(1, 256, 256))
+    summary(model, input_size=(3, 256, 256))
 
 
     # In[ ]:
